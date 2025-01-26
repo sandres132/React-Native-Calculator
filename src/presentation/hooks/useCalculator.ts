@@ -34,12 +34,11 @@ export const useCalculator = () => {
     }, [formula])
     
     
-
     const clean = () => {
         setNumber('0');
         setPrevNumber('0');
         lastOperation.current = undefined;
-        setFormula( '' );
+        setFormula( '0' );
     }
 
     const deleteOperation = () => {
@@ -81,6 +80,7 @@ export const useCalculator = () => {
     }
 
     const buildNumber = ( numberString: string ) => {
+
         // Condicion para que no agregue mas de un punto al numero
         if ( number.includes('.') && numberString === '.' ) return;
 
@@ -106,7 +106,6 @@ export const useCalculator = () => {
 
             return setNumber( number + numberString );
         }
-
 
         setNumber( number + numberString );
 
@@ -152,7 +151,7 @@ export const useCalculator = () => {
     const calculateResult = () => {
         
         const result = calculateSubResult();
-        setFormula( `${ result }` );
+        setNumber( `${ result }` );
 
         lastOperation.current = undefined;
         setPrevNumber('0');
